@@ -14,16 +14,16 @@ spec:
         name: k8s-app
     spec:
       containers:
-      - name: k8s-app
-        image: k8s_php_dev
-        ports:
-        - containerPort: 80
-        - containerPort: 8080
-        volumeMounts:
-        - mountPath: /var/www/src
-          name: www-data
-          readOnly: false
+        - name: k8s-app
+          image: k8s_php_dev
+          ports:
+            - containerPort: 80
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: /var/www
+              name: www-data
+              readOnly: false
       volumes:
-      - name: www-data
-        hostPath:
-          path: /Documents/development/php/k8s_devel_env
+        - name: www-data
+          hostPath:
+            path: /home/bitgandtter/Documents/development/php/k8s_devel_env
