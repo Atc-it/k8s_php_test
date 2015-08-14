@@ -9,7 +9,7 @@ RUN         apt-get update && apt-get dist-upgrade -y
 RUN         apt-get install -y htop nano curl \
             nginx php5-common php5-cli php5-fpm php5-mcrypt php5-mysql php5-apcu php5-gd php5-imagick php5-curl php5-intl
 
-RUN         curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin
+RUN         curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
 RUN         curl -LsS http://symfony.com/installer -o /usr/local/bin/symfony && chmod a+x /usr/local/bin/symfony
 
 # configure services

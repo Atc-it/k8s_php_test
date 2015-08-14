@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="servers"></div>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            function refreshInstance() {
+                console.log("retreiving");
+                $("#servers").html("");
+                {% for instance in instances %}
+                $.get('http://{{ instance.ip }}/app_dev.php/display', function (response) {
+                    $("#servers").html($("#servers").html() + response);
+                });
+                {% endfor %}
+                setTimeout(refreshInstance, 3600);
+            }
+
+            refreshInstance();
+        });
+    </script>
+{% endblock %}
