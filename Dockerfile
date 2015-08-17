@@ -13,12 +13,12 @@ RUN         curl -sS https://getcomposer.org/installer | php && mv composer.phar
 RUN         curl -LsS http://symfony.com/installer -o /usr/local/bin/symfony && chmod a+x /usr/local/bin/symfony
 
 # configure services
-ADD         nginx.conf /etc/nginx/
-ADD         symfony.src.conf /etc/nginx/sites-available/
-ADD         plain.src.conf /etc/nginx/sites-available/
-ADD         src.ini /etc/php5/fpm/conf.d/
-ADD         src.ini /etc/php5/cli/conf.d/
-ADD         pool.conf /etc/php5/fpm/pool.d/
+ADD         development_tools/cluster_config/app/nginx.conf /etc/nginx/
+ADD         development_tools/cluster_config/app/symfony.src.conf /etc/nginx/sites-available/
+ADD         development_tools/cluster_config/app/plain.src.conf /etc/nginx/sites-available/
+ADD         development_tools/cluster_config/app/src.ini /etc/php5/fpm/conf.d/
+ADD         development_tools/cluster_config/app/src.ini /etc/php5/cli/conf.d/
+ADD         development_tools/cluster_config/app/pool.conf /etc/php5/fpm/pool.d/
 
 RUN         ln -s /etc/nginx/sites-available/symfony.src.conf /etc/nginx/sites-enabled/symfony.src
 RUN         ln -s /etc/nginx/sites-available/plain.src.conf /etc/nginx/sites-enabled/plain.src
