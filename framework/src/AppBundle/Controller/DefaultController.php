@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Instance;
+use GuzzleHttp\Client as GuzzleHttpClient;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,9 +20,29 @@ class DefaultController extends Controller
         ));
     }
 
-    private function getInstances(){
-        $doctrine = $this->getDoctrine();
-        return $doctrine->getRepository("AppBundle:Instance")->findAll();
+    private function getInstances()
+    {
+        $client = new GuzzleHttpClient();
+        $response = $client->get('https://10.0.0.1/api/v1/pods', ['verify' => false]);
+        $apiResponse = json_decode($response->getBody()->getContents());
+        $response = [];
+        foreach ($apiResponse->items as $item) {
+            if (strpos($item->metadata->name, "k8s-test-app") !== false) {
+                $response[] = $item->status->podIP;
+            }
+        }
+        return $response;
+    }
+
+    private function renderInstances($instances)
+    {
+        $renders = [];
+        foreach ($instances as $instance) {
+            $client = new GuzzleHttpClient();
+            $response = $client->get(sprintf('http://%s/app_dev.php/display', $instance));
+            $renders[] = $response->getBody()->getContents();
+        }
+        return $renders;
     }
 
     /**
@@ -31,7 +51,7 @@ class DefaultController extends Controller
     public function dashboardAction(Request $request)
     {
         // replace this example code with whatever you need
-        return $this->render('default/dashboard.html.twig', ["instances"=>$this->getInstances()]);
+        return $this->render('default/dashboard.html.twig', ["renders" => $this->renderInstances($this->getInstances())]);
     }
 
     /**
@@ -39,9 +59,6 @@ class DefaultController extends Controller
      */
     public function displayAction(Request $request)
     {
-        // replace this example code with whatever you need
-        $response = $this->render('default/display.html.twig', ["hostName"=>gethostname()]);
-        $response->headers->set('Access-Control-Allow-Origin', '*');
-        return $response;
+        return $this->render('default/display.html.twig', ["hostName" => gethostname()]);
     }
 }
