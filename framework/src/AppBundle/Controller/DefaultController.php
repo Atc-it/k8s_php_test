@@ -30,6 +30,7 @@ class DefaultController extends Controller
                 $response[] = $item->status->podIP;
             }
         }
+        sort($response);
         return $response;
     }
 
