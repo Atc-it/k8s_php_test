@@ -26,7 +26,7 @@ class DefaultController extends Controller
         $apiResponse = json_decode($response->getBody()->getContents());
         $response = [];
         foreach ($apiResponse->items as $item) {
-            if (strpos($item->metadata->name, "k8s-test-app") !== false) {
+            if (strpos($item->metadata->name, "k8s-php-test") !== false) {
                 $response[] = $item->status->podIP;
             }
         }

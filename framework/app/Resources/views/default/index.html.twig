@@ -11,7 +11,9 @@
                     var instances = response["instances"];
                     for (var index in instances) {
                         if (instances.hasOwnProperty(index)) {
-                            $.get("http://" + instances[index] + "/app_dev.php/display", function (content) {
+                            var instance = instances[index];
+                            console.log("instance: ", instance);
+                            $.get("http://" + instance + "/app_dev.php/display", function (content) {
                                 $("#servers").append(content);
                             });
                         }
