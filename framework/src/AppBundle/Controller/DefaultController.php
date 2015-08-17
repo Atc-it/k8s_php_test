@@ -3,12 +3,22 @@
 namespace AppBundle\Controller;
 
 use GuzzleHttp\Client as GuzzleHttpClient;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
+
+    /**
+     * @Route("/", name="homepage")
+     */
+    public function indexAction(Request $request)
+    {
+        return $this->render('default/index.html.twig');
+    }
+
     private function getInstances()
     {
         $client = new GuzzleHttpClient();
@@ -24,11 +34,11 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/", name="homepage")
+     * @Route("/instances", name="instances")
      */
-    public function indexAction(Request $request)
+    public function instancesAction(Request $request)
     {
-        return $this->render('default/index.html.twig', ["instances" => $this->getInstances()]);
+        return new JsonResponse(["instances" => $this->getInstances()]);
     }
 
     /**
@@ -37,7 +47,7 @@ class DefaultController extends Controller
     public function displayAction(Request $request)
     {
         // replace this example code with whatever you need
-        $response = $this->render('default/display.html.twig', ["hostName"=>gethostname()]);
+        $response = $this->render('default/display.html.twig', ["hostName" => gethostname()]);
         $response->headers->set('Access-Control-Allow-Origin', '*');
         return $response;
     }

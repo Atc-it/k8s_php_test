@@ -1,19 +1,22 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div id="servers">
-        <ul></ul>
-    </div>
+    <ul id="servers"></ul>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             function render() {
-                $("#servers ul").html("");
-                {% for instance in instances %}
-                $.get("http://{{ instance }}/app_dev.php/display", function (content) {
-                    $("#servers ul").append(content);
+                $("#servers").html("");
+                $.get("{{ path('instances') }}", function (response) {
+                    var instances = response["instances"];
+                    for (var index in instances) {
+                        if (instances.hasOwnProperty(index)) {
+                            $.get("http://" + instances[index] + "/app_dev.php/display", function (content) {
+                                $("#servers").append(content);
+                            });
+                        }
+                    }
                 });
-                {% endfor %}
                 setTimeout(function () {
                     render();
                 }, 3600);
