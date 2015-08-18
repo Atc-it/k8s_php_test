@@ -7,15 +7,16 @@ be described as a local environment installation.
 
 * Linux/Ubuntu
 
-Follow the instructions on [docker official page](https://docs.docker.com/installation/ubuntulinux/)
+Follow the instructions on [docker official page](https://docs.docker.com/installation/ubuntulinux/).
 
 * Windows
 
-Follow the instructions on [docker tool box official page](https://www.docker.com/toolbox)
+Follow the instructions on [docker tool box official page](https://www.docker.com/toolbox).
 
 2 - Setup k8s local cluster
 
-Follow the instructions on [k8s official page](http://kubernetes.io/v1.0/docs/getting-started-guides/docker.html)
+Follow the instructions on [k8s official page](http://kubernetes.io/v1.0/docs/getting-started-guides/docker.html). 
+Also ensure you have in your $PATH the kubectl binary.
 
 3 - Get the code
 
@@ -27,25 +28,26 @@ Follow the instructions on [k8s official page](http://kubernetes.io/v1.0/docs/ge
   
 4 - Build the image
 
-    cd development_tools/cluster_config/app && bash build-image.sh && cd ../../../
+    bash development_tools/cluster_config/app/build-image.sh
     
 5 - Create the environment
 
-    cd development_tools/cluster_config && bash recreate.sh && cd ../../
+    bash development_tools/cluster_config/app/create.sh
     
 6 - Get the ip of the service
 
-    cd development_tools/cluster_config && bash get_pods_and_services.sh && cd ../../
+    bash development_tools/cluster_config/get_pods_and_services.sh
 
 7 - Browse the app on the ip from the previous step
     
 8 - Test scale the app up
 
-    cd development_tools/cluster_config/app && bash scale-up.sh && cd ../../../
+    bash development_tools/cluster_config/app/scale-up.sh
     
 9 - Test rolling update
 
-* Make some changes on the code, example change the displaying image from image.png to image2.png on the display template
+* Make some changes on the code, example change the displaying image from image.png to image2.png 
+on the display template.
 
 before: framework/app/Resources/views/default/display.twig.html
 
@@ -57,17 +59,21 @@ after: framework/app/Resources/views/default/display.twig.html
     
 * Build a new image the same command on step #4
 
-        cd development_tools/cluster_config/app && bash build-image.sh && cd ../../../
+        bash development_tools/cluster_config/app/build-image.sh
     
 * Roll the update
 
-        cd development_tools/cluster_config && bash rolling_release.sh && cd ../../
+        bash development_tools/cluster_config/rolling_release.sh
         
 10 - Test scale down
 
-    cd development_tools/cluster_config/app && bash scale-down.sh && cd ../../../
+    bash development_tools/cluster_config/app/scale-down.sh
     
 11 - Destroy the environment
 
-    cd development_tools/cluster_config/app && bash delete.sh && cd ../../../
+    bash development_tools/cluster_config/app/delete.sh
+    
+12 - Destroy k8s cluster
+
+    docker ps -a | awk '{print $1}' | xargs docker kill
     
