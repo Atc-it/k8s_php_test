@@ -26,25 +26,25 @@ Also ensure you have in your $PATH the kubectl binary.
 
     cd k8s_php_test
   
-4 - Build the image
+5 - Build the image
 
     bash development_tools/cluster_config/app/build-image.sh
     
-5 - Create the environment
+6 - Create the environment
 
     bash development_tools/cluster_config/app/create.sh
     
-6 - Get the ip of the service
+7 - Get the ip of the service
 
     bash development_tools/cluster_config/get_pods_and_services.sh
 
-7 - Browse the app on the ip from the previous step
+8 - Browse the app on the ip from the previous step
     
-8 - Test scale the app up
+9 - Test scale the app up
 
     bash development_tools/cluster_config/app/scale-up.sh
     
-9 - Test rolling update
+10 - Test rolling update
 
 * Make some changes on the code, example change the displaying image from image.png to image2.png 
 on the display template.
@@ -65,15 +65,15 @@ after: framework/app/Resources/views/default/display.twig.html
 
         bash development_tools/cluster_config/rolling_release.sh
         
-10 - Test scale down
+11 - Test scale down
 
     bash development_tools/cluster_config/app/scale-down.sh
     
-11 - Destroy the environment
+12 - Destroy the environment
 
     bash development_tools/cluster_config/app/delete.sh
     
-12 - Destroy k8s cluster
+13 - Destroy k8s cluster
 
     docker ps -a | awk '{print $1}' | xargs docker kill
     
