@@ -2,5 +2,4 @@
 
 cd ../../..
 docker build --tag=bitgandtter/k8s_php_test .
-#docker push bitgandtter/k8s_php_test
 cd development_tools/cluster_config/app/

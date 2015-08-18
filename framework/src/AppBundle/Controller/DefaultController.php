@@ -47,7 +47,6 @@ class DefaultController extends Controller
      */
     public function displayAction(Request $request)
     {
-        // replace this example code with whatever you need
         $response = $this->render('default/display.html.twig', ["ip" => $_SERVER["SERVER_ADDR"]]);
         $response->headers->set('Access-Control-Allow-Origin', '*');
         return $response;
