@@ -12,7 +12,6 @@
                     for (var index in instances) {
                         if (instances.hasOwnProperty(index)) {
                             var instance = instances[index];
-                            console.log("instance: ", instance);
                             $.get("http://" + instance + "/app_dev.php/display", function (content) {
                                 $("#servers").append(content);
                             });

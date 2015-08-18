@@ -27,10 +27,10 @@ class DefaultController extends Controller
         $response = [];
         foreach ($apiResponse->items as $item) {
             if (strpos($item->metadata->name, "k8s-php-test") !== false) {
-                $response[] = $item->status->podIP;
+                $response[$item->status->podIP] = $item->status->podIP;
             }
         }
-        sort($response);
+        ksort($response);
         return $response;
     }
 
