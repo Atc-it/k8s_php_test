@@ -18,3 +18,11 @@ spec:
           image: bitgandtter/k8s_php_test
           ports:
             - containerPort: 80
+          volumeMounts:
+            - mountPath: /var/www
+              name: k8s-php-test-data
+              readOnly: false
+      volumes:
+        - name: k8s-php-test-data
+          hostPath:
+            path: /home/bitgandtter/Documents/development/php/k8s_php_test
