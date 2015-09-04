@@ -2,25 +2,23 @@
 
 namespace AppBundle\Controller;
 
-use GuzzleHttp\Client as GuzzleHttpClient;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
+use FOS\RestBundle\Controller\Annotations as FOSRestBundleAnnotations;
 use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\Controller\Annotations AS FOSRestBundleAnnotations;
+use Greetings\Hello;
+use Symfony\Component\Validator\ConstraintViolationListInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
+/**
+ * @FOSRestBundleAnnotations\View()
+ */
 class DefaultController extends FOSRestController
 {
 
     /**
-     * @FOSRestBundleAnnotations\View()
-     * @Route("/", name="homepage")
+     * @Route("/", name="helloWorld")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
-        $data = ["Hello World!!"];
-
-        return $data;
+            return new Hello();
     }
 }
