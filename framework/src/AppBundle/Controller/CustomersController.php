@@ -53,6 +53,7 @@ class CustomersController extends FOSRestController implements ClassResourceInte
      *          "description"="customer id"
      *      }
      *  },
+     *  output="AppBundle\Entity\Customer",
      *  statusCodes={
      *         200="Returned when successful"
      *  },
@@ -82,7 +83,7 @@ class CustomersController extends FOSRestController implements ClassResourceInte
      *   "stable" = "#4A7023",
      *   "need validations" = "#ff0000"
      *  },
-     *  views = { "default", "premium" }
+     *  views = { "premium" }
      * )
      */
     public function postAction(Request $request)

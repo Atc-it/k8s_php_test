@@ -1,1 +1,1 @@
-The example of the series post "[Symfony a RESTFul app: REST Levels 0, 1, 2 ( FOSUserBundle )](https://bitgandtter.wordpress.com/2015/09/07/symfony-a-restful-app-rest-levels-0-1-2-fosuserbundle/)"
+The example of the series post "[Symfony a RESTFul app: REST Levels 0, 1, 2 ( NelmioApiDocBundle )](https://bitgandtter.wordpress.com/2015/09/07/symfony-a-restful-app-rest-levels-0-1-2-nelmioapidocbundle/)"
