@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: k8s-php-test-mysql
+  labels:
+    name: k8s-php-test-mysql
+spec:
+  replicas: 1
+  selector:
+    name: k8s-php-test-mysql
+  template:
+    metadata:
+      labels:
+        name: k8s-php-test-mysql
+    spec:
+      containers:
+        - name: k8s-php-test-mysql
+          image: mariadb:10.1.2
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: root
+            - name: MYSQL_DATABASE
+              value: test
+          volumeMounts:
+            - mountPath: /var/www
+              name: k8s-php-test-mysql-data
+              readOnly: false
+      volumes:
+        - name: k8s-php-test-mysql-data
+          hostPath:
+            path: /home/bitgandtter/Documents/development/php/k8s_php_test/development_tools/mysql_data
