@@ -11,6 +11,6 @@ $loader = require __DIR__.'/../vendor/autoload.php';
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
 $loader->addPsr4("Greetings\\", __DIR__.'/../../Greetings', true);
-$loader->addPsr4("Costumer\\", __DIR__.'/../../Costumer', true);
+$loader->addPsr4("Customer\\", __DIR__.'/../../Customer', true);
 
 return $loader;

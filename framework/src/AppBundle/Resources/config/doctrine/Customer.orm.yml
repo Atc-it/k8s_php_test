@@ -1,7 +1,7 @@
-AppBundle\Entity\Costumer:
+AppBundle\Entity\Customer:
     type: entity
     table: null
-    repositoryClass: AppBundle\Entity\CostumerRepository
+    repositoryClass: AppBundle\Entity\CustomerRepository
     id:
         id:
             type: string

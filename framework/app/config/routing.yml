@@ -1,3 +1,7 @@
 greetings:
     resource: "AppBundle\Controller\GreetingsController"
     type:     rest
+
+customers:
+    resource: "AppBundle\Controller\CustomersController"
+    type:     rest
