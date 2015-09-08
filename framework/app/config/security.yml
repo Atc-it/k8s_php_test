@@ -15,15 +15,31 @@ security:
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
+            pattern:      ^/(_(profiler|wdt)|css|images|js)/
+            security:     false
 
-        main:
-            anonymous: ~
-            # activate different ways to authenticate
+        oauth_token:
+            pattern:      ^/oauth/v2/token
+            security:     false
 
-            # http_basic: ~
-            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+        oauth_authorize:
+            pattern:      ^/oauth/v2/auth
+            # Add your favorite authentication process here
+            http_basic:
+                provider: fos_userbundle
 
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+        api_doc:
+            pattern:      ^/api/doc
+            security:     false
+
+        oauth_client:
+            pattern:      ^/api/oauths
+            security:     false
+
+        api:
+            pattern:      ^/api
+            fos_oauth:    true
+            stateless:    true
+
+    access_control:
+        - { path: ^/, roles: [ IS_AUTHENTICATED_FULLY ] }

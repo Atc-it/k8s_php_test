@@ -24,7 +24,9 @@
         "jms/serializer-bundle": "^1.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "nelmio/api-doc-bundle": "^2.9",
-        "willdurand/hateoas-bundle": "^1.0"
+        "willdurand/hateoas-bundle": "^1.0",
+        "friendsofsymfony/oauth-server-bundle": "^1.4",
+        "guzzlehttp/guzzle": "^6.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

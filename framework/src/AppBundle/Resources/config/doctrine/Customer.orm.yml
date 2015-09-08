@@ -1,9 +1,10 @@
 AppBundle\Entity\Customer:
     type: entity
-    table: null
+    table: customer
     repositoryClass: AppBundle\Entity\CustomerRepository
     id:
         id:
+            id: true
             type: string
             length: 255
     lifecycleCallbacks: {  }
