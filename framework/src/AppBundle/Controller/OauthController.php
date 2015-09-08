@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Form\ClientType;
+use GuzzleHttp\Client as GuzzleHttpClient;
 use FOS\RestBundle\Controller\Annotations as FOSRestBundleAnnotations;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Routing\ClassResourceInterface;
@@ -42,6 +43,24 @@ class OauthController extends FOSRestController implements ClassResourceInterfac
 
         if ($clientForm->isValid()) {
             $clientManager->updateClient($client);
+
+            $customer = $this->getDoctrine()->getRepository('AppBundle:Customer')->find('55ef2f09d359e');
+
+            $queryData = [];
+            $queryData['client_id'] = $client->getPublicId();
+            $queryData['redirect_uri'] = $client->getRedirectUris()[0];
+            $queryData['response_type'] = 'code';
+            $authRequest = new Request($queryData);
+
+            $oauthServer = $this->get('fos_oauth_server.server');
+            $oauthServer->finishClientAuthorization(true, $customer, $authRequest, 'code');
+
+            $queryData = [];
+            $queryData['grant_type'] = 'code';
+            $grantRequest = new Request($queryData);
+
+            $oauthServer->grantAccessToken($grantRequest);
+
             return $client;
         }
 
