@@ -2,11 +2,8 @@
 
 namespace AppBundle\Entity;
 
-use FOS\OAuthServerBundle\Entity\AuthCode as BaseAuthCode;
+use Customer\AuthCode as BaseAuthCode;
 
 class AuthCode extends BaseAuthCode
 {
-    protected $id;
-    protected $client;
-    protected $customer;
 }

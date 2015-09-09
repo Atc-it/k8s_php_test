@@ -2,11 +2,8 @@
 
 namespace AppBundle\Entity;
 
-use FOS\OAuthServerBundle\Entity\RefreshToken as BaseRefreshToken;
+use Customer\RefreshToken as BaseRefreshToken;
 
 class RefreshToken extends BaseRefreshToken
 {
-    protected $id;
-    protected $client;
-    protected $customer;
 }
