@@ -61,23 +61,7 @@ class CreateOAuthClientCommand extends ContainerAwareCommand
             $queryData['response_type'] = 'code';
             $authRequest = new Request($queryData);
 
-            $tokenUrl = $oauthServer->finishClientAuthorization(true, $customer, $authRequest, $grantType);
-
-            $output->writeln(sprintf("<info>Customer <comment>%s</comment> linked to client <comment>%s</comment></info>",
-                $customer->getId(),
-                $client->getName()));
-
-            $queryData = [];
-            $queryData['client_id'] = $client->getPublicId();
-            $queryData['client_secret'] = $client->getSecret();
-            $queryData["grant_type"] = $grantType;
-            $queryData["redirect_uri"] = $redirectUri;
-            $queryData["username"] = 'fabien';
-            $queryData["password"] = 'fabien';
-            $queryData["refresh_token"] = '';
-
-            $authRequest = new Request($queryData);
-            $oauthServer->grantAccessToken($authRequest);
+            $oauthServer->finishClientAuthorization(true, $customer, $authRequest, $grantType);
 
             $output->writeln(sprintf("<info>Customer <comment>%s</comment> linked to client <comment>%s</comment></info>",
                 $customer->getId(),
