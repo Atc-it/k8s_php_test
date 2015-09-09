@@ -6,4 +6,8 @@ AppBundle\Entity\Client:
             id: true
             type: integer
             generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+            lenght: 255
     lifecycleCallbacks: {  }

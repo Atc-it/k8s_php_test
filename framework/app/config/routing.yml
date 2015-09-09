@@ -8,11 +8,6 @@ customers:
     prefix:   api
     type:     rest
 
-oauth:
-    resource: "AppBundle\Controller\OauthController"
-    prefix:   api
-    type:     rest
-
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc

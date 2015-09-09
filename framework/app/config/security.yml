@@ -24,16 +24,11 @@ security:
 
         oauth_authorize:
             pattern:      ^/oauth/v2/auth
-            # Add your favorite authentication process here
             http_basic:
                 provider: fos_userbundle
 
         api_doc:
             pattern:      ^/api/doc
-            security:     false
-
-        oauth_client:
-            pattern:      ^/api/oauths
             security:     false
 
         api:

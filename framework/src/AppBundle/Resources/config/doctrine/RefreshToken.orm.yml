@@ -7,14 +7,14 @@ AppBundle\Entity\RefreshToken:
             type: integer
             generator: { strategy: AUTO }
     manyToOne:
-        customer:
+        user:
             targetEntity: Customer
             joinColumn:
-                name: id
+                name: costumer_id
                 referencedColumnName: id
         client:
             targetEntity: Client
             joinColumn:
-                name: id
+                name: client_id
                 referencedColumnName: id
     lifecycleCallbacks: {  }
