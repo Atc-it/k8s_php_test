@@ -7,3 +7,12 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    rest.security.authentication.provider:
+        class: AppBundle\Security\Authentication\Provider\RestProvider
+        arguments: [""]
+        public: false
+
+    rest.security.authentication.listener:
+        class: AppBundle\Security\Firewall\RestListener
+        arguments: ["@security.token_storage", "@security.authentication.manager"]
+        public: false
