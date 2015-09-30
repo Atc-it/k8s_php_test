@@ -16,7 +16,7 @@ security:
 
         oauth_token:
             pattern:      ^/oauth/v2/token
-            rest:         true
+            security:     false
 
         api_doc:
             pattern:      ^/api/doc

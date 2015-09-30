@@ -7,12 +7,13 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
-    rest.security.authentication.provider:
-        class: AppBundle\Security\Authentication\Provider\RestProvider
-        arguments: [""]
-        public: false
-
-    rest.security.authentication.listener:
-        class: AppBundle\Security\Firewall\RestListener
-        arguments: ["@security.token_storage", "@security.authentication.manager"]
+    oauth.storage:
+        class: AppBundle\Services\OAuthStorage
+        arguments:
+            - "@fos_oauth_server.client_manager"
+            - "@fos_oauth_server.access_token_manager"
+            - "@fos_oauth_server.refresh_token_manager"
+            - "@fos_oauth_server.auth_code_manager"
+            - "@fos_oauth_server.user_provider"
+            - "@security.encoder_factory"
         public: false
